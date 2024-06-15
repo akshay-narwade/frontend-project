@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Inch to CM Converter</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Inch to Centimeter</h1>
+        <div class="inputdiv">
+            <input type="text" id="input" placeholder="Value in inches">
+        </div>
+        <div>
+            <button type="submit" onclick="convert()">Convert to Centimeters</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            let inchVal = Number(document.getElementById("input").value);
+            let cmVal = inchVal * 2.54;
+            let result = document.getElementById("result");
+            result.innerHTML = cmVal.toFixed(3) + " Centimeters";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+            color: bisque;
+        }
+        textarea {
+            width: 300px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Words Counter</h1>
+    <textarea id="text" placeholder="Type at least 15 words..."></textarea>
+    <button onclick="countWords()">Count Words</button>
+    <div id="message">
+        
+    </div>
+
+    <script>
+        function countWords() {
+            const text = document.getElementById("text").value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const wordCount = words.length;
+
+            const messageElement = document.getElementById("message");
+
+            if (wordCount < 15) {
+                messageElement.textContent = `Please enter at least 15 words. Currently, you have ${wordCount} words.`;
+                messageElement.style.color = 'red';
+            } else {
+                messageElement.textContent = `Word count: ${wordCount}`;
+                messageElement.style.color = 'green';
+            }
+        }
+    </script>
+</body>
+</html>

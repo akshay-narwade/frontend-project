@@ -1,0 +1,1 @@
+fetch('https://www.frankfurter.app/currencies')

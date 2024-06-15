@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>FD Calculator</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Fixed Deposit (FD) Calculator</h1>
+        <div>
+            <label for="principal">Principal Amount (₹):</label>
+            <input type="number" id="principal" placeholder="Enter principal amount">
+        </div>
+        <div>
+            <label for="tenure">Tenure (months):</label>
+            <input type="number" id="tenure" placeholder="Enter tenure in months">
+        </div>
+        <div>
+            <button type="submit" onclick="calculateFD()">Calculate Maturity Amount</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateFD() {
+            let principal = Number(document.getElementById("principal").value);
+            let tenure = Number(document.getElementById("tenure").value);
+            let rate;
+
+            // Determine the interest rate based on tenure
+            if (tenure < 3) {
+                rate = 5.8; // for less than 3 months
+            } else if (tenure >= 3 && tenure <= 6) {
+                rate = 6.5; // for 3-6 months
+            } else if (tenure >= 7 && tenure <= 9) {
+                rate = 6.8; // for 7-9 months
+            } else if (tenure >= 10) {
+                rate = 7.0; // for 10 or more months
+            } else {
+                rate = 0; // default rate for invalid input
+            }
+
+            // Convert tenure from months to years
+            let tenureInYears = tenure / 12;
+
+            // Calculate the maturity amount using the formula for compound interest
+            let maturityAmount = principal * Math.pow((1 + rate / 100), tenureInYears);
+
+            // Display the result
+            let result = document.getElementById("result");
+            result.innerHTML = `Maturity Amount: ₹${maturityAmount.toFixed(2)}<br>Applied Interest Rate: ${rate}%`;
+        }
+    </script>
+</body>
+</html>
